@@ -1,0 +1,79 @@
+Real Time Project
+----....----....-
+
+DNS
+---
+Domain name system ..> Dictionary of Domains
+
+1. Purchase Domain
+2. Created Hosted Zone ..> Hostlinger (cheap with 129)
+3. Update NameServers in Hostlinger with R53 NameServers
+4. Create 'A' record's ..> Pubic IP of FE, Private IP of DB, BE
+
+DNS Records
+----....---
+A ..> IP address
+CNAME ..> another domain redirect
+MX ..> Mail servers
+NS ..> Nameservers
+SOA ..> Authorization
+TXT ..> validation purpose.
+
+Browser --> Cache --> OS --> OS cache --> ISP DNS resolver --> Root servers --> TLD information --> TLD NS --> NS --> Records
+
+How Browser get IP from DNS?
+----....----....----....----
+- Browser ..> step-into-iot.cloud
+- Check Browser cache, if not then ask OS
+- Check OS cache, if not then ask ISP ..> Internet Service Provider
+- ISP will get IP of Domain with Help of DNS Resolver
+- DNS Resolver cache, if not then get it from 'ROOT SERVERS'
+
+13 ..> 'ROOT SERVERS' ..> Managed by Non-profit 
+
+Who will Update 'ROOT SERVERS'?
+----....----....----....----...
+TLD ..> Top Level Domains ..> .com, .net, .org, .cloud, .space, ...etc
+
+- 'ROOT SERVERS' inform DNS Resolver to contact .cloud TLD 
+- 'ROOT SERVERS' will give .cloud TLD to address details
+- DNS Resolver contacts .cloud TLD to get IP address
+- TLD checks its system to Provide IP address of 'step-into-iot.cloud'
+
+Create TLD
+----....--
+- .naveen ..> we have to register .naveen TLD in 'ROOT SERVERS'
+Domain register ..> middle man ..> Hostlinger, GoDaddy, ...etc
+- Connect to all major Domain register to show my domain TLD 
+- Domain registers update nameservers for the domain from TLD
+- DNS resolver connects with TLD address... address is nothing but nameservers
+
+What happen if NS updated?
+----....----....----....--
+Domain registar ..> TLD about update
+
+Refer ![Link](IMG/DNS-TLD-Ex.png)
+
+RTP 
+---
+Create Records
+- Public IP  ..> FE ..> step-into-iot.cloud 
+- Private IP ..> BE ..> be.step-into-iot.cloud 
+                 DB ..> db.step-into-iot.cloud
+- Update Code to Pick these URL for Easy Automation, when ever IP of VM changes we can update Records in R53, No need to Modify code
+
+Connect to DB from BE?
+----....----....----..
+- mysql -h db.step-into-iot.cloud  -uroot -pExpenseApp@1
+
+Update proxy pass of expense.conf
+----....----....----....----....-
+- proxy_pass http://be.step-into-iot.cloud:8080/;
+
+Check RAM usage
+----....----..
+free -m 
+
+Check HardDisk usage
+----....----....----
+df -hT

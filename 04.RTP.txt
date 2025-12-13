@@ -1,0 +1,158 @@
+Real Time Project
+----....----....-
+
+Give Sudo Access to User
+----....----....----....
+Error: Naveen is not in the sudoers file.  This incident will be reported
+
+- vim /etc/sudoers
+    Naveen        ALL=(ALL)       NOPASSWD: ALL
+- login as Naveen
+- sudo useradd suresh //Naveen able to create user
+- id suresh
+
+Note: Modifying "/etc/sudoers" is not recommended, It contains sensitive data
+
+- usermod-aG wheel Naveen
+- id Naveen
+- sudo useradd suresh-11
+
+Desktop Applications
+----....----....----
+- Disadvantages: 
+    maintain storage in PC
+    consume heavy resources
+    can't access in mobile
+    manual upgrades, fix problems
+
+Web Applications
+----....----....
+- Solve All Disadvantages of Desktop Applications
+
+- Web Applications follow 3-tier Architecture
+- Web Tier, Application Tier, Database Tier
+
+Flow
+----
+User <..> FE <..> BE <..> DB
+User <..> LB <..> FE <..> BE <..> DB
+
+Why 3-tier Architecture ..> Security
+- LB act as Proxy Server
+- User cant access DB directly 
+- FE cant access DB directly
+- vice versa
+
+
+Web Tier --> LB, Web Servers
+App/API Tier --> App servers
+Data tier --> DB Servers
+
+Databases --> MySQL, MSSQL, Oracle, Postgress, MongoDB, Redis
+App/API(Backend Tier) --> Java, Python, NodeJS, DotNet, Go, etc,
+Web(Frontend) Tier --> HTML, CSS, JavaScript, ReactJS, Angular, ExpressJS, Jquery, etc...
+
+Static --> FE applications are static --> Nginx, Apache, etc.
+Dynamic --> BE applications are dynamic --> JBoss, Webspher, WebLogic,etc. --> Tomcat
+
+Launch EC2 in AWS
+----....----....-
+devops-practice --> goto community AMI --> Redhat 9
+We will use only username and password to login servers
+
+ec2-user
+DevOps321
+
+Project
+----...
+User <..> FE <..> BE <..> DB
+
+Start ..> DB then BE then FE 
+Stop ..> FE then BE then DB
+
+Setup DB:
+----....-
+1. Install DB ..> dnf install mysql-server -y
+2. Start DB   ..> systemctl start mysqld
+3. Enable DB  ..> systemctl enable mysqld
+4. We need to change the default root password in order to start using the database service
+   - mysql_secure_installation --set-root-pass ExpenseApp@1
+
+Verify Installation
+----....----....---
+1. netstat -lntp
+2. ps -aux | grep mysql 
+
+Setup BE:
+----....-
+
+Build file & Tools
+----....----....--
+Java   ..> pom.xml          ..> maven, gradle
+NodeJS ..> package.json     ..> npm
+Python ..> requirements.txt ..> pip
+
+Build Tools will Search Build File in your folder & download all dependencies/libraries from internet
+
+Steps:
+----..
+1. Install NodeJS
+2. Check NodeJS Version
+3. Configure Application User
+4. Keep Application code in standard location
+5. Download Code to /tmp folder
+6. Extract code to /app
+7. Download Application Dependencies
+8. Create Systemd Service
+9. Load Service
+10. Start Backend
+11. Enable Backend
+12. Check Logs
+13. For this application to work fully functional we need to load schema to the Database.
+14. Load Schema 
+15. Start Backend
+
+Check DB running or not from BE
+----....----....----....----...
+Ping to DB 
+- ping -c 4 3.237.172.249
+
+Check able to connect to DB
+- telnet 3.237.172.249 3306
+
+Proxy
+----.
+Forward Proxy
+----....----.
+Clients are aware of VPN, Server's not aware
+phone ..> VPN ..> OTT Platform 
+
+1. You can watch restricted content
+2. You can change Geo location
+3. client side proxy, only client is aware of proxy
+4. Hiding client identity
+5. Traffic monitor
+6. Secure connections
+7. Content access restriction
+8. We can use it for cache purpose
+
+Reverse Proxy
+----....----.
+Servers are aware of Proxy, Clients are not aware
+Phone ..> nginx-proxy ..> FE ..> BE ..> DB
+
+1. Only Server is aware of proxy
+2. Security between clients and servers
+3. Act as load balancer..
+4. SSL termination ..> terminate client request at FE, not allow BE & DB
+
+Setup FE:
+----....-
+1. Install Nginx ..> dnf install nginx -y 
+2. Enable Nginx 
+3. Start Nginx
+4. Remove the default content that web server is serving.
+5. Download the frontend content
+6. Extract the frontend content.
+7. FE need to know where is BE
+8. Restart Nginx
