@@ -23,7 +23,7 @@ Browser --> Cache --> OS --> OS cache --> ISP DNS resolver --> Root servers --> 
 
 How Browser get IP from DNS?
 ----....----....----....----
-- Browser ..> step-into-iot.cloud
+- Browser ..> lookatme.space
 - Check Browser cache, if not then ask OS
 - Check OS cache, if not then ask ISP ..> Internet Service Provider
 - ISP will get IP of Domain with Help of DNS Resolver
@@ -38,7 +38,7 @@ TLD ..> Top Level Domains ..> .com, .net, .org, .cloud, .space, ...etc
 - 'ROOT SERVERS' inform DNS Resolver to contact .cloud TLD 
 - 'ROOT SERVERS' will give .cloud TLD to address details
 - DNS Resolver contacts .cloud TLD to get IP address
-- TLD checks its system to Provide IP address of 'step-into-iot.cloud'
+- TLD checks its system to Provide IP address of 'lookatme.space'
 
 Create TLD
 ----....--
@@ -57,18 +57,18 @@ Refer ![Link](IMG/DNS-TLD-Ex.png)
 RTP 
 ---
 Create Records
-- Public IP  ..> FE ..> step-into-iot.cloud 
-- Private IP ..> BE ..> be.step-into-iot.cloud 
-                 DB ..> db.step-into-iot.cloud
+- Public IP  ..> FE ..> lookatme.space 
+- Private IP ..> BE ..> be.lookatme.space 
+                 DB ..> db.lookatme.space
 - Update Code to Pick these URL for Easy Automation, when ever IP of VM changes we can update Records in R53, No need to Modify code
 
 Connect to DB from BE?
 ----....----....----..
-- mysql -h db.step-into-iot.cloud  -uroot -pExpenseApp@1
+- mysql -h db.lookatme.space  -uroot -pExpenseApp@1
 
 Update proxy pass of expense.conf
 ----....----....----....----....-
-- proxy_pass http://be.step-into-iot.cloud:8080/;
+- proxy_pass http://be.lookatme.space:8080/;
 
 Check RAM usage
 ----....----..
